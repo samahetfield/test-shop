@@ -21,6 +21,10 @@
     cursor: pointer;
 }
 
+.product-list-item img {
+    height: 150px;
+}
+
 @media (min-width: 900px) {
     .product-list-item {
         width: 20%;
@@ -35,7 +39,7 @@
 
 @media (max-width: 670px) {
     .product-list-item {
-        width: 30%;
+        width: 100%;
     }
 }
 

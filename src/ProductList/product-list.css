@@ -12,13 +12,37 @@
     width: 100%;
 }
 
-.product-list-item {
-    width: 20%;
-    margin: 1%;
-    padding: 1%;
-    box-shadow: 0px 0px black, -0.2em 0 .4em gray;
-    border-radius: 2%;
+@media (min-width: 900px) {
+    .product-list-item {
+        width: 20%;
+        margin: 1%;
+        padding: 1%;
+        box-shadow: 0px 0px black, -0.2em 0 .4em gray;
+        border-radius: 2%;
+    }
 }
+
+@media (max-width: 900px) {
+    .product-list-item {
+        width: 25%;
+        margin: 1%;
+        padding: 1%;
+        box-shadow: 0px 0px black, -0.2em 0 .4em gray;
+        border-radius: 2%;
+    }
+}
+
+@media (max-width: 670px) {
+    .product-list-item {
+        width: 30%;
+        margin: 1%;
+        padding: 1%;
+        box-shadow: 0px 0px black, -0.2em 0 .4em gray;
+        border-radius: 2%;
+    }
+}
+
+
 
 .search-field {
     display: flex;

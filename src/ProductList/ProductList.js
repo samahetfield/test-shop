@@ -17,10 +17,10 @@ export const ProductList = ({ products }) => {
         setProductsFiltered(productsFiltered)
     }, [searchValue])
 
-    return productsFiltered.length > 0 ? (<div className="product-list-view">
+    return (<div className="product-list-view">
         <div className='search-field'><input className="search-input" value={searchValue} onChange={(event) =>
             setSearchValue(event.target.value)
         }></input></div>
         <div className="product-list">{productsFiltered.map((product) => renderProductList(product))}</div>
-    </div >) : null
+    </div >)
 }

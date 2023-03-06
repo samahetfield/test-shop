@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import './product-list.css'
+import { useNavigate } from "react-router-dom";
 
-const renderProductList = ({ id, brand, model, price, imgUrl }) => {
-    return <div id={id} key={id} className="product-list-item"><img src={imgUrl} /> <div>{brand}</div> <div>{model}</div> <div>{price}</div></div>
+const handleOnClick = (id, navigate) => () => {
+
+    return navigate(`/product/${id}`);
+}
+
+const renderProductList = ({ id, brand, model, price, imgUrl }, navigate) => {
+    return <div id={id} key={id} className="product-list-item" onClick={handleOnClick(id, navigate)}><img src={imgUrl} /> <div>{brand}</div> <div>{model}</div> <div>{price}</div></div>
 }
 
 export const ProductList = ({ products }) => {
+    const navigate = useNavigate();
     const [searchValue, setSearchValue] = useState('');
     const [productsFiltered, setProductsFiltered] = useState([]);
 
@@ -21,6 +28,6 @@ export const ProductList = ({ products }) => {
         <div className='search-field'><input className="search-input" value={searchValue} onChange={(event) =>
             setSearchValue(event.target.value)
         }></input></div>
-        <div className="product-list">{productsFiltered.map((product) => renderProductList(product))}</div>
+        <div className="product-list">{productsFiltered.map((product) => renderProductList(product, navigate))}</div>
     </div >)
 }

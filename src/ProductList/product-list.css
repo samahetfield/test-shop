@@ -1,0 +1,33 @@
+.product-list-view {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.product-list-item {
+    width: 20%;
+    margin: 1%;
+    padding: 1%;
+    box-shadow: 0px 0px black, -0.2em 0 .4em gray;
+    border-radius: 2%;
+}
+
+.search-field {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+
+.search-field .search-input {
+    margin-right: 3%;
+    height: 26px;
+    width: 25%;
+}

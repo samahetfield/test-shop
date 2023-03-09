@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-export const Header = () => {
+export default function Header() {
   return (
     <div>Header</div>
     // https://www.youtube.com/watch?v=zy8rqihtvA8
-  )
+  );
 }

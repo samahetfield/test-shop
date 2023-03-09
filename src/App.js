@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { createBrowserRouter, RouterProvider, Routes } from 'react-router-dom';
-import Header from './Header/Header';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+// import Header from './Header/Header';
 import ProductList from './ProductList/ProductList';
 import ProductDetail from './ProductDetail/ProductDetail';
+import Layout from './Layout';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [shoppingCart, setShoppingCart] = useState(0);
 
   useEffect(() => {
     const dataExpirationTime = localStorage.getItem('expirationTime');
@@ -34,23 +36,22 @@ function App() {
     }
   }, []);
 
-  const router = createBrowserRouter([
-    {
+  const router = createBrowserRouter([{
+    element: <Layout shoppingCart={shoppingCart} />,
+    children: [{
       path: '/',
       element: <ProductList products={products} />,
     },
     {
       path: '/product/:id',
-      element: <ProductDetail />,
-    },
-  ]);
+      element: <ProductDetail setShoppingCart={setShoppingCart} shoppingCart={shoppingCart} />,
+    }],
+  }]);
 
   return (
     <div className="App">
-      <Routes>
-        <Header />
-        <RouterProvider router={router} />
-      </Routes>
+      {/* <Header shoppingCart={shoppingCart} /> */}
+      <RouterProvider router={router} />
     </div>
   );
 }

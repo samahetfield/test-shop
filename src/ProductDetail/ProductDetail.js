@@ -9,10 +9,21 @@ const messages = {
   select_color: 'Select device color',
   select_storages: 'Select device storage',
   no_image_available: 'No image available',
+  add_to_cart: 'Add to cart',
+  price: 'Price: ',
+  cpu: 'CPU: ',
+  ram: 'RAM: ',
+  os: 'OS: ',
+  displaySize: 'Display Size: ',
+  battery: 'Battery: ',
+  primaryCamera: 'Primary camera: ',
+  secondaryCamera: 'Secondary camera: ',
+  dimentions: 'Dimentions: ',
+  weight: 'Weight: ',
 };
 
 // eslint-disable-next-line max-len
-const addToCart = (productId, colorSelected, storageSelected, isAdding, setIsAdding) => async () => {
+const addToCart = (productId, colorSelected, storageSelected, isAdding, setIsAdding, shoppingCart, setShoppingCart) => async () => {
   if (isAdding) return;
   setIsAdding(true);
   const productToAdd = {
@@ -29,10 +40,11 @@ const addToCart = (productId, colorSelected, storageSelected, isAdding, setIsAdd
     },
   );
   await jsonData.json();
+  setShoppingCart(shoppingCart + 1);
   setIsAdding(false);
 };
 
-export default function ProductDetail() {
+export default function ProductDetail({ shoppingCart, setShoppingCart }) {
   const [productDetail, setProductDetail] = useState(null);
   const [storageSelected, setStorageSelected] = useState(null);
   const [colorSelected, setColorSelected] = useState(null);
@@ -80,18 +92,52 @@ export default function ProductDetail() {
         </div>
         <div className="product-specifications">
           <div className="product-description">
-            <div>{brand}</div>
-            <div>{model}</div>
-            <div>{price}</div>
-            <div>{cpu}</div>
-            <div>{ram}</div>
-            <div>{os}</div>
-            <div>{displaySize}</div>
-            <div>{battery}</div>
-            <div>{primaryCamera}</div>
-            <div>{secondaryCamera}</div>
-            <div>{dimentions}</div>
-            <div>{weight}</div>
+            <div className="product-brand">
+              {brand}
+            </div>
+            <div className="product-model">
+              {model}
+            </div>
+            <div className="product-property">
+              <div>{messages.price}</div>
+              <div>{price}</div>
+            </div>
+            <div className="product-property">
+              <div>{messages.cpu}</div>
+              <div>{cpu}</div>
+            </div>
+            <div className="product-property">
+              <div>{messages.ram}</div>
+              <div>{ram}</div>
+            </div>
+            <div className="product-property">
+              <div>{messages.os}</div>
+              <div>{os}</div>
+            </div>
+            <div className="product-property">
+              <div>{messages.displaySize}</div>
+              <div>{displaySize}</div>
+            </div>
+            <div className="product-property">
+              <div>{messages.battery}</div>
+              <div>{battery}</div>
+            </div>
+            <div className="product-property">
+              <div>{messages.primaryCamera}</div>
+              <div>{primaryCamera}</div>
+            </div>
+            <div className="product-property">
+              <div>{messages.secondaryCamera}</div>
+              <div>{secondaryCamera != null ? secondaryCamera : 'N/A'}</div>
+            </div>
+            <div className="product-property">
+              <div>{messages.dimentions}</div>
+              <div>{dimentions}</div>
+            </div>
+            <div className="product-property">
+              <div>{messages.weight}</div>
+              <div>{weight}</div>
+            </div>
           </div>
           <div className="product-actions">
             <Selector
@@ -107,7 +153,7 @@ export default function ProductDetail() {
               onChangeOption={setStorageSelected}
             />
           </div>
-          <div>
+          <div className="add-to-cart-button">
             <Button
               variant="contained"
               onClick={addToCart(
@@ -116,9 +162,11 @@ export default function ProductDetail() {
                 colorSelected,
                 isAdding,
                 setIsAdding,
+                shoppingCart,
+                setShoppingCart,
               )}
             >
-              Add to cart
+              {messages.add_to_cart}
             </Button>
           </div>
         </div>

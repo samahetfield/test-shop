@@ -11,3 +11,37 @@
     display: flex;
     flex-direction: row;
 }
+
+.product-description {
+    text-align: left;
+}
+
+.product-image {
+    margin: 5%;
+}
+
+.product-brand,
+.product-model {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.product-property {
+    display: flex;
+    flex-direction: row;
+}
+
+.product-property :first-child {
+    color: gray;
+    margin-right: 5px;
+}
+
+.add-to-cart-button {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+}
+
+.add-to-cart-button > button {
+    width: 100%;
+}

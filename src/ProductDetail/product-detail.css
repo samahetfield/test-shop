@@ -7,9 +7,16 @@
     align-items: center;
 }
 
+@media (max-width: 700px) {
+    .product-detail {
+        flex-direction: column;
+    }
+}
+
 .product-actions {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 
 .product-description {
@@ -42,6 +49,6 @@
     margin-top: 5%;
 }
 
-.add-to-cart-button > button {
+.add-to-cart-button>button {
     width: 100%;
 }

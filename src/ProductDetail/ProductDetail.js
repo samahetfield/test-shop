@@ -6,8 +6,8 @@ import Selector from '../Components/Selector';
 import './product-detail.css';
 
 const messages = {
-  select_color: 'Select device color',
-  select_storages: 'Select device storage',
+  select_color: 'Select color',
+  select_storages: 'Select storage',
   no_image_available: 'No image available',
   add_to_cart: 'Add to cart',
   price: 'Price: ',

@@ -87,7 +87,6 @@ export default function ProductDetail({ shoppingCart, setShoppingCart }) {
     return (
       <div className="product-detail">
         <div className="product-image">
-          {' '}
           <img src={productDetail.imgUrl} alt={messages.no_image_available} />
         </div>
         <div className="product-specifications">

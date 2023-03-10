@@ -1,37 +1,43 @@
 import React from 'react';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Typography from '@mui/material/Typography';
-import { Route, Link as RouterLink } from 'react-router-dom';
+import { Link, useLocation, matchPath } from 'react-router-dom';
+import './Breadcrums.css';
 
-function SimpleBreadCrum() {
-  return (
-    <Route>
-      {({ location }) => {
-        const pathnames = location.pathname.split('/').filter((x) => x);
-        return (
-          <Breadcrumbs aria-label="Breadcrumb">
-            <RouterLink color="inherit" to="/">
-              Home
-            </RouterLink>
-            {pathnames.map((value, index) => {
-              const last = index === pathnames.length - 1;
-              const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+function matchRouteDefinitions(definitions, location) {
+  const crumbs = [];
 
-              return last ? (
-                <Typography color="textPrimary" key={to}>
-                  {value}
-                </Typography>
-              ) : (
-                <RouterLink color="inherit" to={to} key={to}>
-                  {value}
-                </RouterLink>
-              );
-            })}
-          </Breadcrumbs>
-        );
-      }}
-    </Route>
-  );
+  definitions.forEach((definition) => {
+    const match = matchPath(
+      { path: definition.path, end: false },
+      location.pathname,
+    );
+    if (match) {
+      crumbs.push(definition);
+    }
+  });
+
+  return crumbs;
 }
 
-export default SimpleBreadCrum;
+function useActiveRoutePaths(routes) {
+  const location = useLocation();
+  const activeRoutePaths = matchRouteDefinitions(routes, location);
+  return activeRoutePaths;
+}
+
+export default function Breadcrumbs({ routes }) {
+  const activeRoutePaths = useActiveRoutePaths(routes);
+  return (
+    <div className="breadcrumb">
+      {activeRoutePaths.map((active, index, { length }) => (
+        <span key={active.path}>
+          {index === 0 ? '' : ' > '}
+          {index !== length - 1 ? (
+            <Link to={active.path}>{active.title}</Link>
+          ) : (
+            <div>{active.title}</div>
+          )}
+        </span>
+      ))}
+    </div>
+  );
+}

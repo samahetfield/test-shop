@@ -2,10 +2,10 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header/Header';
 
-function Layout({ shoppingCart }) {
+function Layout({ shoppingCart, routes }) {
   return (
     <>
-      <Header shoppingCart={shoppingCart} />
+      <Header shoppingCart={shoppingCart} routes={routes} />
       <Outlet />
     </>
   );

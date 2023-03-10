@@ -6,6 +6,15 @@ import ProductList from './ProductList/ProductList';
 import ProductDetail from './ProductDetail/ProductDetail';
 import Layout from './Layout';
 
+const routes = [
+  {
+    title: 'Product List', path: '/', element: <ProductList />,
+  },
+  {
+    title: 'Product Detail', path: '/product/:id', element: <ProductDetail />,
+  },
+];
+
 function App() {
   const [products, setProducts] = useState([]);
   const [shoppingCart, setShoppingCart] = useState(0);
@@ -37,7 +46,7 @@ function App() {
   }, []);
 
   const router = createBrowserRouter([{
-    element: <Layout shoppingCart={shoppingCart} />,
+    element: <Layout shoppingCart={shoppingCart} routes={routes} />,
     children: [{
       path: '/',
       element: <ProductList products={products} />,
@@ -50,7 +59,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Header shoppingCart={shoppingCart} /> */}
       <RouterProvider router={router} />
     </div>
   );

@@ -1,0 +1,9 @@
+.breadcrumb {
+    display: flex;
+    flex-direction: row;
+}
+
+.breadcrumb>span {
+    display: flex;
+    flex-direction: row;
+}
